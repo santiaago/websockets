@@ -1,7 +1,17 @@
 package main
 
-import "fmt"
+import (
+	"log"
+	"net/http"
+)
+
+func init() {
+	log.SetFlags(log.Ltime | log.Ldate | log.Lshortfile)
+}
 
 func main() {
-	fmt.Println("hello world")
+	if err := http.ListenAndServe(":8080", nil); err != nil {
+		log.Fatal("ListenAndServer", err)
+	}
+
 }
