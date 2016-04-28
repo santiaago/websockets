@@ -7,7 +7,7 @@ var Root = React.createClass({
 	},
 
 	 componentDidMount: function() { 
-		 this.serverSocket = new WebSocket("ws://localhost:8080/echo");
+		 this.serverSocket = new WebSocket("ws://http://santiaago-websockets.herokuapp.com/echo");
 		 this.serverSocket.onopen = function() {
 			 this.serverSocket.send("Connection init");
 		 }.bind(this);
