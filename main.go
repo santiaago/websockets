@@ -4,6 +4,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"os"
 
 	"golang.org/x/net/websocket"
 )
@@ -23,7 +24,7 @@ func main() {
 
 	http.Handle("/echo", websocket.Handler(EchoServer))
 
-	if err := http.ListenAndServe(":8080", nil); err != nil {
+	if err := http.ListenAndServe(":"+os.Getenv("PORT"), nil); err != nil {
 		log.Fatal("ListenAndServer", err)
 	}
 
