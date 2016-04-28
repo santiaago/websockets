@@ -7,7 +7,16 @@ var Root = React.createClass({
 	},
 
 	 componentDidMount: function() { 
-		 this.serverSocket = new WebSocket("ws://http://santiaago-websockets.herokuapp.com/echo");
+		 var loc = window.location, new_uri;
+		 if (loc.protocol === "https:") {
+			 new_uri = "wss:";
+		 } else {
+			 new_uri = "ws:";
+		 }
+		 new_uri += "//" + loc.host;
+		 new_uri += loc.pathname + "echo";
+		 
+		 this.serverSocket = new WebSocket(new_uri);
 		 this.serverSocket.onopen = function() {
 			 this.serverSocket.send("Connection init");
 		 }.bind(this);
